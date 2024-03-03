@@ -166,31 +166,124 @@
 </header>
 
 
-
-<section id="categories">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-md-12 col-xs-12">
-                <div id="categories-icon-slider" class="categories-wrapper owl-carousel owl-theme">
-                    {% for category in categories %}
-                    <div class="item">
-                        <a href="{% url 'myapp:subcategory-list-with-category' category.id %}">
-                            <div class="category-icon-item">
-                                <div class="icon-box">
-                                    <div class="icon">
-                                        <img src="{{ category.imagecat.url }}" alt="{{ category.name }}">
+    <section id="categories">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12 col-xs-12">
+                    <div id="categories-icon-slider" class="categories-wrapper owl-carousel owl-theme">
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-1.png' %}" alt="">
+                                        </div>
+                                        <h4>Bicycle</h4>
                                     </div>
-                                    <h4>{{ category.name }}</h4>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-2.png' %}" alt="">
+                                        </div>
+                                        <h4>Furniture</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-3.png' %}" alt="">
+                                        </div>
+                                        <h4>Laptop</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-4.png' %}" alt="">
+                                        </div>
+                                        <h4>Electronic</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-5.png' %}" alt="">
+                                        </div>
+                                        <h4>Toys</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-6.png' %}" alt="">
+                                        </div>
+                                        <h4>Cloths</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-1.png' %}" alt="">
+                                        </div>
+                                        <h4>Bicycle</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-2.png' %}" alt="">
+                                        </div>
+                                        <h4>Furniture</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="{% static 'assets/img/category/img-3.png' %}" alt="">
+                                        </div>
+                                        <h4>Laptop</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
@@ -205,7 +298,7 @@
                     <div class="item">
                         <div class="product-item">
                             <div class="carousel-thumb">
-                                <img class="img-fluid" src="{{ product.image1.url }}" alt="">
+                                <img class="img-fluid" src="{% static '{{ product.image1.url }}' %}" alt="">
 
                                 <div class="overlay">
                                     <div>
@@ -303,7 +396,7 @@
                             <span><i class="lni-bookmark"></i></span>
                         </div>
                         <a href="{% url 'myapp:product_detail' product.id %}">
-                            <img class="img-fluid" src="{{ product.image1.url }}" alt="{{ product.title }}">
+                            <img class="img-fluid" src="{% static '{{ product.image1.url }}' %}" alt="{{ product.title }}">
                         </a>
                     </figure>
                     <div class="feature-content">
