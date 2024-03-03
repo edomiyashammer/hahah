@@ -8,6 +8,3 @@ venv-django/
 __pycache__/
 *.pyc
 
-# Ignore the Django static and media directories (if applicable)
-staticfiles/
-media/
