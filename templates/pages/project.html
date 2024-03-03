@@ -1,0 +1,43 @@
+{% load format_tags %}
+
+<div class="overflow-hidden relative lg:py-16">
+    <div class="w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-0">
+        <h2 class="text-gray-900 sm:text-4xl">
+            <div class="block text-3xl font-bold ">
+                Project
+            </div>
+        </h2>
+        <p class="text-md mt-4 text-gray-400 pb-4">
+            As a graphic designer, I have had the opportunity to work with a diverse range of clients and projects, including branding, print design, and digital design. With a strong foundation in design principles and software skills, I strive to create visually compelling designs that effectively communicate my clients' messages.        </p>
+
+        <div class="pt-4 flex flex-row flex-wrap justify-center items-center content-center">
+            {% for project in projects %}
+            <div class="p-2"><div class="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 w-100 sm:w-60 md:w-80">
+                <a target="_blank" href={{project.project_link}} class="block w-full h-full">
+                    <img alt="blog photo" src={{project.image_link}} class="object-cover w-full max-h-40"/>
+                    <div class="w-full p-4 bg-white">
+                        <p class="mb-2 text-xl font-medium text-shaw-800">{{project.title}}</p>
+                        <p class="font-light text-shaw-400 text-md">{{project.description}}</p>
+                        <div class="flex flex-wrap items-center mt-4 justify-starts">
+                            {% if project.tags %}
+                                {% with tags=project.tags|format_tags %}
+                                    {% for tag in tags%}
+                                        <div class="text-xs mr-2 py-1.5 px-4 text-shaw-600 bg-shaw-100 rounded-2xl mb-1">
+                                            {{ tag }}
+                                        </div>
+                                    {% endfor %}
+                                {% endwith %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div></div>
+
+
+        {% endfor %}
+    </div>  
+
+
+            
+        </div>
+</div>
