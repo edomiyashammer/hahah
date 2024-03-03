@@ -1,201 +1,352 @@
 {% extends "base.html" %}
 
-{% block title %}
-    Portfolio
-{% endblock %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
 
 {% block content %}
 
-<div class="flex lg:flex-row flex-col">
 
 
-    <div class="">
 
-        <div class="lg:hidden block p-4 bg-shaw-200 fixed w-full top-0 z-10">
-            <div class="flex justify-between items-center flex-row">
-                <div class="underline decoration-blue-500/30 text-2xl font-mono"> Portfolio </div>
-                <div>
-                    <button class="px-2 py-1" onclick="toggleView()" id="button-view"></button>
+<header id="header-wrap">
+
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-5 col-xs-12">
+
+                    <ul class="list-inline">
+                        <li><i class="lni-phone"></i> +251929295283</li>
+                        <li><i class="lni-envelope"></i> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection"
+                                class="__cf_email__"
+                                data-cfemail="5e2d2b2e2e312c2a1e39333f3732703d3133">support@giyaamarket.com</a></li>
+                    </ul>
+
                 </div>
-            </div>
-            <div id="sm-nav-view" class="hidden">
-
-                <div class="flex flex-col sm:flex-row items-center justify-around">
-                    <div class="sm-image">
-                        <div class="px-4 pt-8">
-                            {% if personal.image_link %}
-                                <img alt="profile" style="width: 192px; height: 192px; object-fit: cover;" src="{{ personal.image_link }}" class="mx-auto object-cover rounded-full h-100 w-100 "/>
-                            {% else %}
-                                <img alt="profile" style="width: 192px; height: 192px; object-fit: cover;" src="https://xsgames.co/randomusers/assets/avatars/female/1.jpg" class="mx-auto object-cover rounded-full h-100 w-100 "/>
-                            {% endif %}
-                        </div>
-                        <div class="name pt-2 pb-1">
-                            <div class="underline decoration-blue-500/30 text-2xl font-mono text-center">
-                                {{ personal.name }}
-                            </div>
-                        </div>
-                        <div class="name">
-                            <div class="text-lg font-mono text-center font-thin">
-                                {{ personal.occupation }}
-                            </div>
-                        </div>
-                        <div class="name">
-                            <div class="text-sm font-mono text-center">
-                                {{ personal.country }}
-                            </div>
-                        </div>
-            
-                        <div class="social px-4 pb-4">
-                            <div class="pt-8 flex max-w-xs mx-auto items-center justify-between">
-                                {% if personal.email %}
-                                <a href="mailto:{{personal.email}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm3.519 0L12 11.671 18.481 6H5.52zM20 7.329l-7.341 6.424a1 1 0 0 1-1.318 0L4 7.329V18h16V7.329z"/>
-                                    </svg>
-                                </a>
-                                {% endif %}
-                                {% if personal.twitter_link %}
-                                <a href="{{personal.twitter_link}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                                    <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z">
-                                        </path>
-                                    </svg>
-                                </a>
-                                {% endif %}
-                                {% if personal.github_link %}
-                                <a href="{{personal.github_link}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" viewBox="0 0 1792 1792">
-                                        <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z">
-                                        </path>
-                                    </svg>
-                                </a>
-                                {% endif %}
-                                {% if personal.linkedin_link %}
-                                <a href="{{personal.linkedin_link}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                                    <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
-                                        </path>
-                                    </svg>
-                                </a>
-                                {% endif %}
-                            </div>
-                        </div>
+                <div class="col-lg-5 col-md-7 col-xs-12">
+                    <div class="roof-social float-right">
+                        <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
+                        <a class="twitter" href="#"><i class="lni-twitter-filled"></i></a>
+                        <a class="instagram" href="#"><i class="lni-instagram-filled"></i></a>
+                        <a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a>
+                        <a class="google" href="#"><i class="lni-google-plus"></i></a>
                     </div>
-                    <div class="sm-info">
-                        <div class="pt-4">
-                            <ul>
-                                {% for link in links %}
-                                <li class="pb-2 text-lg text-center"  onclick="closeView()">
-                                    <a class="underline decoration-blue-500/30" href="#{{ link.url }}">{{ link.name }}</a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                    <div class="header-top-right float-right">
+                        <a href="/" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
+                        <a href="/" class="header-top-button"><i class="lni-pencil"></i>
+                            Register</a>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-        <div class="hidden lg:block w-64 h-screen p-4 fixed bg-shaw-200">
-            <div class="underline decoration-blue-500/30 text-2xl font-mono"> Portfolio </div>
-            <div class="px-4 pt-8">
-                {% if personal.image_link %}
-                    <img alt="profile" style="width: 192px; height: 192px; object-fit: cover;" src="{{ personal.image_link }}" class="mx-auto object-cover rounded-full h-100 w-100 "/>
-                {% else %}
-                    <img alt="profile" style="width: 192px; height: 192px; object-fit: cover;" src="https://xsgames.co/randomusers/assets/avatars/female/1.jpg" class="mx-auto object-cover rounded-full h-100 w-100 "/>
-                {% endif %}
-            </div>
-            <div class="name pt-2 pb-1">
-                <div class="underline decoration-blue-500/30 text-2xl font-mono text-center">
-                    {{ personal.name }}
-                </div>
-            </div>
-            <div class="name">
-                <div class="text-lg font-mono text-center font-thin">
-                    {{ personal.occupation }}
-                </div>
-            </div>
-            <div class="name">
-                <div class="text-sm font-mono text-center">
-                    {{ personal.country }}
-                </div>
-            </div>
-
-            <div class="social px-4 pb-4">
-                <div class="pt-8 flex max-w-xs mx-auto items-center justify-between">
-                    {% if personal.email %}
-                    <a href="mailto:{{personal.email}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm3.519 0L12 11.671 18.481 6H5.52zM20 7.329l-7.341 6.424a1 1 0 0 1-1.318 0L4 7.329V18h16V7.329z"/>
-                        </svg>
-                    </a>
-                    {% endif %}
-                    {% if personal.twitter_link %}
-                    <a href="{{personal.twitter_link}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                        <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z">
-                            </path>
-                        </svg>
-                    </a>
-                    {% endif %}
-                    {% if personal.github_link %}
-                    <a href="{{personal.github_link}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" viewBox="0 0 1792 1792">
-                            <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z">
-                            </path>
-                        </svg>
-                    </a>
-                    {% endif %}
-                    {% if personal.linkedin_link %}
-                    <a href="{{personal.linkedin_link}}" class="text-shaw-600 transition-colors duration-200 hover:text-shaw-0">
-                        <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-shaw-0" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
-                            </path>
-                        </svg>
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="pt-4 px-4">
-                <ul>
-                    {% for link in links %}
-                    <li class="pb-2 text-lg">
-                        <a class="" href="#{{ link.url }}" data-nav-link="{{ link.url }}">{{ link.name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
     </div>
 
-    <div class="p-4 pt-16 lg:pt-0 lg:px-8 lg:pr-4 lg:pl-72 w-screen">
 
-        {% if error %}
-            <span class="ms-2 bg-red-200 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
-                Error: {{ error }}
-            </span>
-        {% endif %}
+    <nav class="navbar navbar-expand-lg bg-white fixed-top scrolling-navbar">
+        <div class="container">
 
-        {% block home %}
-            {% for link in links %}
-            <div id="{{ link.url }}" class="pt-4 nav-section">
-                {% include "pages/"|add:link.url|add:".html" %}
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
+                    aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="lni-menu"></span>
+                    <span class="lni-menu"></span>
+                    <span class="lni-menu"></span>
+                </button>
+                <a href="/" class="navbar-brand"><img src="{% static 'assets/img/logo1.png' %}" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="main-navbar">
+                <ul class="navbar-nav mr-auto w-100 justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="/">
+                            Home
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            Prodact List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            Trending Prodact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            Contacts
+                        </a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                <div class="post-btn">
+                    <a class="btn btn-common" href="/">
+                        <i class="lni-pencil-alt"></i> Post an Ad
+                    </a>
+                </div>
+                {% endif %}
+
+
+            </div>
+        </div>
+
+        <ul class="mobile-menu">
+            <li>
+                <a class="active" href="/">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="/">Prodact List</a>
+            </li>
+            <li>
+                <a href="/">
+                    Trending Prodact
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    Contact
+                </a>
+            </li>
+            <li>
+                {% if user.is_authenticated %}
+                <div class="post-btn">
+                    <a class="btn btn-common" style="color: white;" href="/">
+                        <i class="lni-pencil-alt"></i> Post an Ad
+                    </a>
+                </div>
+                {% endif %}
+
+            </li>
+            {% if not user.is_authenticated %}
+            <li>
+                <div class="post-btn">
+                    <a class="btn btn-common" style="color: white;" href="/">
+                        <i class="lni-pencil-alt"></i> Register
+                    </a>
+                </div>
+            </li>
+            {% endif %}
+
+
+
+
+        </ul>
+
+    </nav>
+
+
+    <div id="hero-area">
+        <div class="overlay"></div>
+        <div class="slick-slider" style=" height: 80px;">
+            <div class="slide"><img src="{% static 'assets/img/background/counter-back1.cef0a6252395.jpg' %}"
+                    alt="Image 1"></div>
+            <div class="slide"><img src="{% static 'assets/img/blog/blog1.jpg' %}" alt="Image 2"></div>
+        </div>
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                    <div class="contents">
+                        <h1 class="head-title">Welcome to The Largest <span>Marketplace</span></h1>
+                        <p>Buy and sell everything from used cars to mobile phones and computers, or search for
+                            property, jobs and more</p>
+                        <div class="search-bar">
+                            <div class="search-inner">
+                                <form class="search-form">
+                                    <div class="form-group">
+                                        <input type="text" name="customword" class="form-control"
+                                            placeholder="What are you looking for?">
+                                    </div>
+                                    <button class="btn btn-common" type="button"><i class="lni-search"></i> Search
+                                        Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+
+
+<section id="categories">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12 col-xs-12">
+                <div id="categories-icon-slider" class="categories-wrapper owl-carousel owl-theme">
+                    {% for category in categories %}
+                    <div class="item">
+                        <a href="{% url 'myapp:subcategory-list-with-category' category.id %}">
+                            <div class="category-icon-item">
+                                <div class="icon-box">
+                                    <div class="icon">
+                                        <img src="{{ category.imagecat.url }}" alt="{{ category.name }}">
+                                    </div>
+                                    <h4>{{ category.name }}</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Featured Section Begin -->
+<section class="featured-lis section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeIn" data-wow-delay="0.5s">
+                <h3 class="section-title">Featured Products</h3>
+                <div id="new-products" class="owl-carousel owl-theme">
+                    {% for product in featured_products %}
+                    <div class="item">
+                        <div class="product-item">
+                            <div class="carousel-thumb">
+                                <img class="img-fluid" src="{{ product.image1.url }}" alt="">
+
+                                <div class="overlay">
+                                    <div>
+                                        <a class="btn btn-common"
+                                            href="{% url 'myapp:product_detail' product.id %}">View
+                                            Details</a>
+                                    </div>
+                                </div>
+                                {% if product.is_sale %}
+                                <div class="btn-product bg-sale">
+                                    <a href="#">Sale</a>
+                                </div>
+                                {% endif %}
+                                {% if product.is_sold %}
+                                <div class="btn-product bg-slod">
+                                    <a href="#">Sold</a>
+                                </div>
+                                {% endif %}
+                                <span class="price">ETB{{ product.price }}</span>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title"><a
+                                        href="{% url 'myapp:product_detail' product.id %}">{{product.title }}</a>
+                                </h3>
+                                <span>{{ product.category.name }} / {{ product.subcategory.name }}</span>
+                                <div class="icon">
+                                    <span><i class="lni-bookmark"></i></span>
+                                    <span><i class="lni-heart"></i></span>
+                                </div>
+                                <div class="card-text">
+                                    <div class="float-left">
+                                        <span class="icon-wrap">
+                                            {% for _ in product.rating %}
+                                            <i class="lni-star-filled"></i>
+                                            {% endfor %}
+                                            {% for _ in product.empty_stars %}
+                                            <i class="lni-star"></i>
+                                            {% endfor %}
+                                        </span>
+                                        <span class="count-review">
+                                            ({{ product.review_count }} Review)
+                                        </span>
+                                    </div>
+                                    <div class="float-right">
+                                        <a class="address" href="#"><i class="lni-map-marker"></i>
+                                            {{ product.location }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Featured Section End -->
+
+
+
+
+<!-- Banner Begin -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="{% static 'img/banner/banner-1.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="{% static 'img/banner/banner-2.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner End -->
+
+
+
+<!-- Latest Product Section Begin -->
+<section class="featured section-padding">
+    <div class="container">
+        <h1 class="section-title">Latest Products</h1>
+        <div class="row">
+            {% for product in latest_products %}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                <div class="featured-box">
+                    <figure>
+                        <div class="icon">
+                            <span class="bg-green"><i class="lni-heart"></i></span>
+                            <span><i class="lni-bookmark"></i></span>
+                        </div>
+                        <a href="{% url 'myapp:product_detail' product.id %}">
+                            <img class="img-fluid" src="{{ product.image1.url }}" alt="{{ product.title }}">
+                        </a>
+                    </figure>
+                    <div class="feature-content">
+                        <div class="product">
+                            <a href="#">{{ product.category.name }} > </a>
+                            <a href="#">{{ product.subcategory.name }}</a>
+                        </div>
+                        <h4><a href="{% url 'myapp:product_detail' product.id %}">{{ product.title }}</a></h4>
+                        <div class="meta-tag">
+                            <span>
+                                <a href="#"><i class="lni-user"></i> {{ product.user.username }}</a>
+                            </span>
+                            <span>
+                                <a href="#"><i class="lni-map-marker"></i> {{ product.location }}</a>
+                            </span>
+                            <span>
+                                <a href="#"><i class="lni-tag"></i> {{ product.brand }}</a>
+                            </span>
+                        </div>
+                        <p class="dsc">{{ product.description }}</p>
+                        <div class="listing-bottom">
+                            <h3 class="price float-left">ETB{{ product.price }}</h3>
+                            <a href="{% url 'myapp:product_detail' product.id %}"
+                                class="btn btn-common float-right">View
+                                Details</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             {% endfor %}
-        {% endblock %}
-        <footer>
-            <div class="w-full mx-auto max-w-screen-xl p-4 flex justify-center pt-8">
-            <span class="text-sm text-gray-500 sm:text-center dark:text-shaw-600">© 2023 
-                <a href="https://sandeep-shaw10.github.io/" class="hover:underline">Sandeep Shaw</a>. All Rights Reserved.
-            </span>
-            </div>
-        </footer>
+        </div>
     </div>
+</section>
+<!-- Latest Product Section End -->
 
-
-</div>
-  
 {% endblock %}
