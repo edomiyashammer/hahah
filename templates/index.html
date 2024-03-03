@@ -113,16 +113,7 @@
                 </a>
             </li>
             <li>
-                {% if user.is_authenticated %}
-                <div class="post-btn">
-                    <a class="btn btn-common" style="color: white;" href="/">
-                        <i class="lni-pencil-alt"></i> Post an Ad
-                    </a>
-                </div>
-                {% endif %}
 
-            </li>
-            {% if not user.is_authenticated %}
             <li>
                 <div class="post-btn">
                     <a class="btn btn-common" style="color: white;" href="/">
