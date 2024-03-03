@@ -6,6 +6,7 @@
 
 
 {% block content %}
+{% include 'nav.html'}
 
 
     <div class="page-header" style="background: url(assets/img/banner1.jpg);">
@@ -34,19 +35,19 @@
                         <div id="owl-demo" class="owl-carousel owl-theme">
                             <div class="item">
                                 <div class="product-img">
-                                    <img class="img-fluid" src="assets/img/productinfo/img1.jpg" alt="">
+                                    <img class="img-fluid" src="{% static 'assets/img/productinfo/img1.jpg' %}" alt="">
                                 </div>
                                 <span class="price">$1,550</span>
                             </div>
                             <div class="item">
                                 <div class="product-img">
-                                    <img class="img-fluid" src="assets/img/productinfo/img3.jpg" alt="">
+                                    <img class="img-fluid" src="{% static 'assets/img/productinfo/img3.jpg' %}" alt="">
                                 </div>
                                 <span class="price">$1,550</span>
                             </div>
                             <div class="item">
                                 <div class="product-img">
-                                    <img class="img-fluid" src="assets/img/productinfo/img2.jpg" alt="">
+                                    <img class="img-fluid" src="{% static 'assets/img/productinfo/img2.jpg' %}" alt="">
                                 </div>
                                 <span class="price">$1,550</span>
                             </div>
@@ -125,7 +126,7 @@
                             <div class="agent-inner">
                                 <div class="agent-title">
                                     <div class="agent-photo">
-                                        <a href="#"><img src="assets/img/productinfo/agent.jpg" alt=""></a>
+                                        <a href="#"><img src="{% static 'assets/img/productinfo/agent.jpg' %}" alt=""></a>
                                     </div>
                                     <div class="agent-details">
                                         <h3><a href="#">Tahmina Anny</a></h3>
@@ -144,7 +145,7 @@
                             <ul class="posts-list">
                                 <li>
                                     <div class="widget-thumb">
-                                        <a href="#"><img src="assets/img/details/img1.jpg" alt="" /></a>
+                                        <a href="#"><img src="{% static 'assets/img/details/img1.jpg' %}" alt="" /></a>
                                     </div>
                                     <div class="widget-content">
                                         <h4><a href="#">Little Harbor Yacht 38</a></h4>
@@ -165,7 +166,7 @@
                                 </li>
                                 <li>
                                     <div class="widget-thumb">
-                                        <a href="#"><img src="assets/img/details/img2.jpg" alt="" /></a>
+                                        <a href="#"><img src="{% static 'assets/img/details/img2.jpg' %}" alt="" /></a>
                                     </div>
                                     <div class="widget-content">
                                         <h4><a href="#">Little Harbor Yacht 38</a></h4>
@@ -186,7 +187,7 @@
                                 </li>
                                 <li>
                                     <div class="widget-thumb">
-                                        <a href="#"><img src="assets/img/details/img3.jpg" alt="" /></a>
+                                        <a href="#"><img src="{% static 'assets/img/details/img3.jpg' %}" alt="" /></a>
                                     </div>
                                     <div class="widget-content">
                                         <h4><a href="#">Little Harbor Yacht 38</a></h4>
@@ -207,7 +208,7 @@
                                 </li>
                                 <li>
                                     <div class="widget-thumb">
-                                        <a href="#"><img src="assets/img/details/img4.jpg" alt="" /></a>
+                                        <a href="#"><img src="{% static 'assets/img/details/img4.jpg' %}" alt="" /></a>
                                     </div>
                                     <div class="widget-content">
                                         <h4><a href="#">Little Harbor Yacht 38</a></h4>
@@ -228,7 +229,7 @@
                                 </li>
                                 <li>
                                     <div class="widget-thumb">
-                                        <a href="#"><img src="assets/img/details/img5.jpg" alt="" /></a>
+                                        <a href="#"><img src="{% static 'assets/img/details/img5.jpg' %}" alt="" /></a>
                                     </div>
                                     <div class="widget-content">
                                         <h4><a href="#">Little Harbor Yacht 38</a></h4>
