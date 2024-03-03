@@ -1,154 +1,78 @@
+from django.utils.html import format_html
+from django.core.validators import MaxValueValidator
 from django.db import models
-from django.contrib.auth.models import User
-from django.shortcuts import render
-from django.db.models import F
-from django.urls import reverse
-from django.utils.text import slugify
 
 
-
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-    imagecat = models.ImageField(upload_to="products/")
-
-    def __str__(self):
-        return self.name
-
-
-class Product(models.Model):
-
-    # Add the 'is_featured' field
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE)  # Set default value to None or a specific user
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    subcategory = models.ForeignKey("Subcategory", on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    description = models.TextField(max_length=50)
-    product_type = models.CharField(max_length=50)
-    quantite = models.CharField(max_length=50)
-    color = models.CharField(max_length=50)
-    information = models.TextField(max_length=100)
-    review = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    image1 = models.ImageField(upload_to="products/")
-    image2 = models.ImageField(upload_to="products/", blank=True, null=True)
-    image3 = models.ImageField(upload_to="products/", blank=True, null=True)
-    image4 = models.ImageField(upload_to="products/", blank=True, null=True)
-    image5 = models.ImageField(upload_to="products/", blank=True, null=True)
-    location = models.CharField(max_length=50)
-    videolink = models.CharField(max_length=100)
-    sizes = models.CharField(max_length=50, blank=True)
-    discount_price = models.DecimalField(
-        max_digits=10, decimal_places=2, blank=True, null=True
-    )
-    is_featured = models.BooleanField(default=False)
-
-
-def product_list(request, sale=False):
-    products = Product.objects.all()
-
-    if sale:
-        # Filter for sale products (discounted price is not null)
-        products = products.filter(discount_price__isnull=False)
-
-    # Filter by price range
-    min_price = request.GET.get("min_price")
-    max_price = request.GET.get("max_price")
-    if min_price and max_price:
-        products = products.filter(price__range=(min_price, max_price))
-
-    # Filter by size
-    selected_size = request.GET.get("size")
-    if selected_size:
-        products = products.filter(sizes__contains=selected_size)
-
-    # Retrieve the latest products
-    latest_products = Product.objects.order_by("-id")[:5]
-
-    return render(
-        request,
-        "product_list.html",
-        {
-            "products": products,
-            "categories": Category.objects.all(),
-            "latest_products": latest_products,
-            "sale": sale,
-        },
-    )
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # Add user profile fields (e.g., address, phone number, etc.)
-
-
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product, through="CartItem")
-
-
-class CartItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-
-    def total_price(self):
-        return self.quantity * self.product.price
-
-
-class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product, through="OrderItem")
-    # Add order-related fields (e.g., shipping address, payment details, order status)
-
-
-class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-
-
-class Review(models.Model):
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name="reviews"
-    )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField(
-        choices=[(1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5")]
-    )
-    comment = models.TextField()
-
-
-class Subcategory(models.Model):
+class PersonalData(models.Model):
     name = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    imagesub = models.ImageField(upload_to="products/")
+    image_link = models.URLField(verbose_name='Image Link', default='', help_text = 'Use 1:1 image for better results')
+    occupation = models.CharField(max_length=255, verbose_name='Display Occupation')
+    country = models.CharField(max_length=255)
+    banner_text = models.TextField(verbose_name='Banner Text')
+    resume_link = models.URLField()
+    email = models.EmailField()
+    twitter_link = models.URLField(verbose_name='Twitter Link')
+    github_link = models.URLField(verbose_name='Github Link')
+    linkedin_link = models.URLField(verbose_name='LinkedIn Link')
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = "Personal Information"
+        verbose_name_plural = "Personal Information"
+
+    def image_tag(self):
+        if self.image_link:
+            return format_html('<img src="{}" width="192px"/>'.format(self.image_link))
+        else:
+            return ''
+    
+    image_tag.short_description = 'Image'
 
 
-class Post(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField(max_length=50)
-    product_type = models.CharField(max_length=50)
-    quantite = models.CharField(max_length=50)
-    color = models.CharField(max_length=50)
-    information = models.TextField(max_length=100)
-    review = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=4)
-    image1 = models.ImageField(upload_to="products/")
-    image2 = models.ImageField(upload_to="products/", blank=True, null=True)
-    image3 = models.ImageField(upload_to="products/", blank=True, null=True)
-    image4 = models.ImageField(upload_to="products/", blank=True, null=True)
-    image5 = models.ImageField(upload_to="products/", blank=True, null=True)
-    location = models.CharField(max_length=50)
-    videolink = models.CharField(max_length=100)
-    sizes = models.CharField(max_length=50, blank=True)
-    discount_price = models.DecimalField(
-        max_digits=10, decimal_places=2, blank=True, null=True
-    )
-    is_featured = models.BooleanField(default=False)
+class Experience(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    role = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    about = models.TextField()
+    links = models.URLField(null=True, blank=True)
+    is_current = models.BooleanField(default=False, verbose_name='Working Currently')
+
+    def __str__(self):
+        return self.role
+    
+    def work(self):
+        return f'{self.role}, {self.company}'
+    
+    work.short_description = 'Position'
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    percentage = models.PositiveSmallIntegerField(default=0, blank=True, null=True, validators=[MaxValueValidator(100)])
+
+    def __str__(self):
+        return self.name
+    
+
+class Project(models.Model):
+    title = models.CharField(max_length=100)
+    date = models.DateField()
+    image_link = models.URLField()
+    description = models.TextField()
+    project_link = models.URLField()
+    tags = models.CharField(max_length=100, help_text='Separate tags with "," and First 3 tag will be considered ')
+    is_archived = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+    
+    def image_tag(self):
+        if self.image_link:
+            return format_html('<img src="{}" width="192px"/>'.format(self.image_link))
+        else:
+            return ''
+    
+    image_tag.short_description = 'Image'
