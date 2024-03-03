@@ -30,3 +30,7 @@ def index(request):
     }
     
     return render(request,'index.html', context)
+
+
+def details(request):    
+    return render(request,'ads-details.html')
